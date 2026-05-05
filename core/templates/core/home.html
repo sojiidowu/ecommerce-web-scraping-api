@@ -6,6 +6,44 @@
     <title>Web Scraping</title>
 </head>
 <body>
+    <h1>Search for Jumia Products</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="product_name" placeholder="Enter Product Name" required />
+        <button type="submit"> Search</button>
+    </form>
+
+    <hr>
+    {% if products %}
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Link</th>
+            <th>Image</th>
+        </tr>
+        {% for item in products %}
+        <tr>
+        <td>{{ item.name }}</td> 
+        <td>{{ item.price }}</td> 
+        <td>
+            {% if item.link %}
+            <a href="{{ item.link }}" target="_blank">View</a>
+            {% else %}
+            No link
+            {% endif %}
+            </td> 
+        <td>
+            {% if item.image %}
+            <img src="{{ item.image }}" width="100">
+            {% else %}
+            No image
+            {% endif %}
+            </td>
+        </tr> 
+    {% endfor %}
+    </table>
     
+    {% endif %}
 </body>
 </html>
