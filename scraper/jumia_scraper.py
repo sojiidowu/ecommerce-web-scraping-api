@@ -22,24 +22,24 @@ def scrape_jumia_products(product_name):
         # Product Name
         try:
             name = item.find_element(By.CLASS_NAME, "name").text
-        except:
-            name = "Unknown"
+        except NoSuchElementException:
+            name = "None"
         # Product Price
         try:
             price = item.find_element(By.CLASS_NAME, "prc").text
-        except:
-            price = "Unknown"
+        except NoSuchElementException:
+            price = "None"
         # Product Link
         try:
             link = item.find_element(By.CSS_SELECTOR, "a.core").get_attribute("href")
-        except:
-            link = "Unknown"
+        except NoSuchElementException:
+            link = "None"
         # Product Image
         try:
             img = item.find_element(By.CSS_SELECTOR, "div.img-c img")
             image = img.get_attribute("data-src") or img.get_attribute("src")
-        except:
-            image = "Unknown"
+        except NoSuchElementException:
+            image = "None"
 
         results.append({
             "name": name,
