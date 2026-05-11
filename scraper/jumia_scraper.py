@@ -2,6 +2,7 @@ from .selenium_engine import get_driver
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from core.models import Product
 
 
 def scrape_jumia_products(product_name):
@@ -23,7 +24,7 @@ def scrape_jumia_products(product_name):
         try:
             name = item.find_element(By.CLASS_NAME, "name").text
         except NoSuchElementException:
-            name = "Unknown"
+            continue
         # Product Price
         try:
             price = item.find_element(By.CLASS_NAME, "prc").text
@@ -33,20 +34,23 @@ def scrape_jumia_products(product_name):
         try:
             link = item.find_element(By.CSS_SELECTOR, "a.core").get_attribute("href")
         except NoSuchElementException:
-            link = "None"
+            continue
         # Product Image
         try:
             img = item.find_element(By.CSS_SELECTOR, "div.img-c img")
             image = img.get_attribute("data-src") or img.get_attribute("src")
         except NoSuchElementException:
             image = "None"
-
-        results.append({
-            "name": name,
-            "price": price,
-            "link": link,
-            "image": image,
-        })
     
+        # Save to DB
+        product, created = Product.objects.get_or_create(
+            link=link, # duplication unique identifier
+            defaults={
+                "name":name,
+                "price":price,
+                "image":image
+            }
+        )
+
     driver.quit()
-    return results
+
