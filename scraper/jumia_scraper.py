@@ -23,12 +23,12 @@ def scrape_jumia_products(product_name):
         try:
             name = item.find_element(By.CLASS_NAME, "name").text
         except NoSuchElementException:
-            name = "None"
+            name = "Unknown"
         # Product Price
         try:
             price = item.find_element(By.CLASS_NAME, "prc").text
         except NoSuchElementException:
-            price = "None"
+            price = "Unknown"
         # Product Link
         try:
             link = item.find_element(By.CSS_SELECTOR, "a.core").get_attribute("href")
