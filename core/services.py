@@ -5,17 +5,21 @@ def save_products(products):
 
     for item in products:
 
+        # Basic Validation
+        if not item.get("name") or not item.get("link"):
+            continue
+
         # Save to DB
         product, created = Product.objects.get_or_create(
-            link=item["link"], # duplication unique identifier
+            link=item["link"], # Duplication Unique Identifier
             defaults={
-                "name": item["name"],
-                "price": item["price"],
-                "image": item["image"]
+                "name": item.get("name"),
+                "price": item.get("price", "Unknown"),
+                "image": item.get("image")
             }
         )
 
         if created:
             saved_count += 1
-    
+        
     return saved_count
