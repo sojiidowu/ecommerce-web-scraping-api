@@ -2,7 +2,6 @@ from .selenium_engine import get_driver
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from core.models import Product
 
 
 def scrape_jumia_products(product_name):
@@ -41,16 +40,14 @@ def scrape_jumia_products(product_name):
             image = img.get_attribute("data-src") or img.get_attribute("src")
         except NoSuchElementException:
             image = "None"
-    
-        # Save to DB
-        product, created = Product.objects.get_or_create(
-            link=link, # duplication unique identifier
-            defaults={
-                "name":name,
-                "price":price,
-                "image":image
-            }
-        )
 
+        # Storing scraped data in a dictionary
+        results.append({
+            "name": name,
+            "price": price,
+            "link": link,
+            "image": image,
+        })
     driver.quit()
-
+    
+    return results
