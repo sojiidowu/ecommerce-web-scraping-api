@@ -1,6 +1,10 @@
 from .models import Product
 
-def save_products(products):
+def save_products(products, query):
+
+    # Delete old results for this query
+    Product.objects.filter(query=query).delete()
+
     saved_count = 0
 
     for item in products:
@@ -10,16 +14,14 @@ def save_products(products):
             continue
 
         # Save to DB
-        product, created = Product.objects.get_or_create(
-            link=item["link"], # Duplication Unique Identifier
-            defaults={
-                "name": item.get("name"),
-                "price": item.get("price", "Unknown"),
-                "image": item.get("image")
-            }
+        Product.objects.create(
+            query=query,
+            name=item.get("name"),
+            price=item.get("price", "Unknown"),
+            link=item.get("link"),
+            image=item.get("image")
         )
 
-        if created:
-            saved_count += 1
+        saved_count += 1
         
     return saved_count
