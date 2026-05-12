@@ -15,6 +15,7 @@ def scrape_jumia_products(product_name):
     time.sleep(5)
     # To get all product cards
     products = driver.find_elements(By.CLASS_NAME, "prd")
+    products = products[:20]
     print('Products found:', len(products))
     results = []
 
