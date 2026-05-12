@@ -6,6 +6,7 @@ from .models import Product
 
 # Create your views here.
 def home(request):
+    products = Product.objects.none()
     product_name = None
     if request.method == "POST":
         product_name = request.POST.get("product_name")
