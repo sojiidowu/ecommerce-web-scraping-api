@@ -8,6 +8,7 @@ __pycache__/
 venv/
 env/
 .venv/
+ENV/
 
 # Django
 db.sqlite3
@@ -23,11 +24,42 @@ staticfiles/
 .vscode/
 .idea/
 
+# PyCharm
+.idea/
+
 # Mac/Linux (OS files)
 .DS_Store
+
+# Windows
 Thumbs.db
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Redis
+dump.rdb
 
 # Selenium / scraping outputs 
 *.csv
 *.json
 *.txt
+*.crdownload
+
+# mypy
+.mypy_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Build files
+dist/
+build/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local PostgreSQL exports/backups
+*.sql
