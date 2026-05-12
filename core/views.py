@@ -6,6 +6,7 @@ from .models import Product
 
 # Create your views here.
 def home(request):
+    product_name = None
     if request.method == "POST":
         product_name = request.POST.get("product_name")
 
@@ -15,6 +16,7 @@ def home(request):
 
         print(f"{saved} new products saved!")
 
-    products = Product.objects.all().order_by("-created_at")
+    # products = Product.objects.all().order_by("-created_at")
+    products = Product.objects.filter(query=product_name).order_by("-created_at")
 
     return render(request, "core/home.html", {"products": products})
