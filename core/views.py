@@ -11,7 +11,7 @@ def home(request):
 
         products = scrape_jumia_products(product_name)
 
-        saved = save_products(products)
+        saved = save_products(products, product_name)
 
         print(f"{saved} new products saved!")
 
