@@ -3,7 +3,7 @@ from .models import Product
 from .serializers import ProductSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .product_query_service import get_products_for_query
+from .tasks import run_scraper
 
 @api_view(['POST'])
 def scrape_products(request):
@@ -15,15 +15,13 @@ def scrape_products(request):
             status=400
         )
     
-    products = get_products_for_query(query)
-    count = products.count()
+    # Start background task
+    run_scraper.delay(query)
 
     return Response({
         "message": "Scraping completed",
         "query": query,
-        "count": count
     })
-
 
 class ProductsListAPIView(generics.ListAPIView):
     serializer_class = ProductSerializer
