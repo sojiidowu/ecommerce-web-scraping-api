@@ -13,15 +13,18 @@ def save_products(products, query):
         if not item.get("name") or not item.get("link"):
             continue
 
-        # Save to DB
-        Product.objects.create(
-            query=query,
-            name=item.get("name"),
-            price=item.get("price", "Unknown"),
-            link=item.get("link"),
-            image=item.get("image")
+        # Create only if link does not already exist
+        product, created = Product.objects.get_or_create(
+            link=item.get("link"), # Unique Identifier
+            defaults={
+                "query": query,
+                "name": item.get("name"),
+                "price": item.get("price", "Unknown"),
+                "image": item.get("image")
+            }
         )
 
-        saved_count += 1
+        if created:
+            saved_count += 1
         
     return saved_count
