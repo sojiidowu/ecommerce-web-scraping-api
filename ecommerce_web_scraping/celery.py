@@ -1,9 +1,9 @@
 import os
 from celery import Celery
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecommerce_web_sraping.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecommerce_web_scraping.settings')
 
-app = Celery('ecommerce_web_sraping')
+app = Celery('ecommerce_web_scraping')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 

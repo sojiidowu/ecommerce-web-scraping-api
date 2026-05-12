@@ -1,5 +1,5 @@
 """
-WSGI config for ecommerce_web_sraping project.
+WSGI config for ecommerce_web_scraping project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecommerce_web_sraping.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecommerce_web_scraping.settings')
 
 application = get_wsgi_application()
