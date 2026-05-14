@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def get_driver():
     chrome_options = Options()
+    chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--start-maximized")
 
     chrome_options.add_argument(
