@@ -1,4 +1,4 @@
-from .selenium_engine import get_driver
+from .selenium_engine import get_driver, accept_cookies
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
@@ -10,6 +10,8 @@ def scrape_jumia_products(product_name):
     driver = get_driver()
     print('driver created')
     driver.get(url)
+
+    accept_cookies(driver)
 
     # wait for page to load
     time.sleep(5)
