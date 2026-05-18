@@ -1,8 +1,9 @@
 from .selenium_engine import get_driver, accept_cookies
-import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import logging
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 logger = logging.getLogger(__name__)
@@ -22,7 +23,9 @@ def scrape_jumia_products(product_name):
 
         accept_cookies(driver)
 
-        time.sleep(5)
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(By.CLASS_NAME, "prd")
+        )
 
         products = driver.find_elements(By.CLASS_NAME, "prd")
 
