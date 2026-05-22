@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'scraper',
+
     'rest_framework',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,15 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'E-commerce Scraper API',
+    'DESCRIPTION': 'API for scraping Jumia products using Selenium, Celery, Redis, and Django',
+    'VERSION': '1.0.0',
+   # 'SERVE_INCLUDE_SCHEMA':
+}
