@@ -3,6 +3,7 @@ services:
   web:
     build: .
     container_name: django_app
+    shm_size: "2gb"
     ports:
       - "8000:8000"
     env_file:

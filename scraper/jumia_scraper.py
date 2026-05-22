@@ -24,7 +24,7 @@ def scrape_jumia_products(product_name):
         accept_cookies(driver)
 
         WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located(By.CLASS_NAME, "prd")
+           EC.presence_of_element_located((By.CLASS_NAME, "prd"))
         )
 
         products = driver.find_elements(By.CLASS_NAME, "prd")
@@ -58,7 +58,7 @@ def scrape_jumia_products(product_name):
                 image = img.get_attribute("data-src") or img.get_attribute("src")
             except NoSuchElementException:
                 image = "None"
-
+                
             results.append({
                 "name": name,
                 "price": price,
