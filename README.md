@@ -139,3 +139,19 @@ The project demonstrates:
 * Clean backend project structure
 
 The goal was to strengthen backend engineering skills by building a real-world scraping system using modern development tools and scalable architecture patterns.
+
+
+## Future Improvements
+
+The following enhancements are planned for future versions of this project:
+
+1. Replace Selenium with a faster headless scraping engine (e.g., Playwright) for improved performance and stability.
+2. Add retry and failure handling for failed Celery tasks.
+3. Implement task status tracking endpoint (PENDING, STARTED, SUCCESS, FAILURE).
+4. Add pagination and filtering improvements for product API.
+5. Introduce caching layer (Redis cache) to reduce repeated scraping requests.
+6. Improve Docker setup with production-ready configuration (Gunicorn + Nginx).
+7. Deploy the project using cloud services (AWS / Render / Railway).
+8. Add authentication and rate limiting to protect API endpoints.
+9. Implement scheduled scraping using Celery Beat.
+10. Improve logging and monitoring (e.g., structured logs + Sentry).
