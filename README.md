@@ -2,7 +2,7 @@ E-Commerce Web Scraping API
 
 A Django-based e-commerce product scraping API that collects product data from Jumia using Selenium automation. The project uses Celery and Redis for background task processing, PostgreSQL for data storage, Docker for containerization, and Swagger for API documentation.
 
-Features
+## Features
 
 1. Scrape products from Jumia
 2. Automatic cookie popup handling
@@ -15,13 +15,14 @@ Features
 9. Headless browser automation with Selenium
 10. Product data persistence
 
-Tech Stack
+## Tech Stack
 
 1. Backend: Python, Django, Django REST Framework
 2. Database: PostgreSQL
 3. API Documentation:
    i. DRF Spectacular
    ii. Swagger UI
+   iii. Postman
 4. Web Scraping:
    i. Selenium
    ii. Chromium
@@ -34,7 +35,29 @@ Tech Stack
    ii. Docker Compose
 7. Version Control: Git & GitHub
 
-Project Structure
+## Screenshots
+
+## Swagger Documentation
+
+![Swagger Docs](screenshots/swagger1.png)
+![Swagger Docs](screenshots/swagger2.png)
+
+## Docker Containers
+
+![Docker](screenshots/docker1.png)
+![Docker](screenshots/docker2.png)
+
+## Scraped Products
+
+![Products](screenshots/products1.png)
+![Products](screenshots/products2.png)
+![Products](screenshots/products3.png)
+
+## Celery Worker
+
+![Celery](screenshots/celery.png)
+
+## Project Structure
 
 1. 'core/':
    i. API views
@@ -57,12 +80,12 @@ Project Structure
 6. '.env':
    i. Environment variables configuration
 
-API Documentation
+## API Documentation
 The API is documented using Swagger (OpenAPI).
 After running the project locally, visit:
 '/api/docs/' - Swagger UI to explore and test all available endpoints
 
-Installation
+## Installation
 
 1. Clone the repository:
 
@@ -97,7 +120,7 @@ Installation
    http://127.0.0.1:8000/api/docs/
    ```
 
-Purpose of the Project
+## Purpose of the Project
 
 This project was built to explore modern backend engineering workflows involving web scraping, asynchronous task processing, containerization, and REST API development.
 
