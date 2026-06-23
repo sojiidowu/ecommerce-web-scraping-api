@@ -1,0 +1,30 @@
+name: Run Automated Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Pull down the repository code onto the runner
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Start the Docker containers exactly like you do locally
+    - name: Start Docker Containers
+      run: |
+        docker compose up -d db web
+
+    # 3. Wait a few seconds for the database to accept connections
+    - name: Sleep for DB readiness
+      run: sleep 5
+
+    # 4. Run the exact test command inside the web container
+    - name: Run Pytest Suite
+      run: |
+        docker compose exec -T web pytest -v
